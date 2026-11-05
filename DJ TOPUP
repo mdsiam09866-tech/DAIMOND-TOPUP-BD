@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIAMOND TOPUP BD</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#101321;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#191e32;padding:22px;
+ text-align:center;border-bottom:2px solid #00d9ff;
+}
+header h1{color:#00e5ff;margin:0}
+header p{color:#bbb}
+.container{max-width:600px;margin:25px auto;padding:15px}
+.card{
+ background:#1c2339;padding:20px;
+ border-radius:15px;margin-bottom:18px;
+}
+h2{color:#00e5ff}
+input,select{
+ width:100%;padding:14px;margin:10px 0;
+ border:1px solid #39445f;border-radius:8px;
+ background:#101321;color:white;
+}
+.pack{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.pack button{
+ background:#293451;color:white;
+ border:2px solid #42516f;padding:18px;
+ border-radius:10px;font-size:16px;
+}
+.pack button.active{
+ border-color:#00e5ff;color:#00e5ff;
+}
+.pay{
+ background:#00cba9;color:#101321;
+ border:0;padding:15px;width:100%;
+ border-radius:9px;font-weight:bold;
+ font-size:17px;
+}
+#result{color:#00ffae;line-height:1.8}
+footer{text-align:center;color:#999;padding:25px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>💎 DIAMOND TOPUP BD</h1>
+<p>Free Fire Diamond Top-Up</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Player Information</h2>
+<input id="uid" placeholder="Enter Free Fire Player ID">
+</div>
+
+<div class="card">
+<h2>Choose Diamonds</h2>
+<div class="pack">
+<button onclick="choose(100,80,this)">100 💎<br>৳80</button>
+<button onclick="choose(210,160,this)">210 💎<br>৳160</button>
+<button onclick="choose(520,390,this)">520 💎<br>৳390</button>
+<button onclick="choose(1080,780,this)">1080 💎<br>৳780</button>
+</div>
+</div>
+
+<div class="card">
+<h2>Payment Method</h2>
+<select id="payment">
+<option value="">Select Payment</option>
+<option>bKash</option>
+<option>Nagad</option>
+<option>Rocket</option>
+</select>
+<h3 id="total">Total: ৳0</h3>
+<button class="pay" onclick="order()">PLACE DEMO ORDER</button>
+<p id="result"></p>
+</div>
+
+</div>
+
+<footer>
+DIAMOND TOPUP BD © 2026
+<br>Independent demo website
+</footer>
+
+<script>
+let diamond=0,price=0;
+
+function choose(d,p,btn){
+ diamond=d;price=p;
+ document.querySelectorAll('.pack button')
+ .forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ document.getElementById('total').innerText='Total: ৳'+price;
+}
+
+function order(){
+ let uid=document.getElementById('uid').value.trim();
+ let payment=document.getElementById('payment').value;
+
+ if(!uid || !diamond || !payment){
+ alert('Please fill in all information');
+ return;
+ }
+
+ let id='DEMO-'+Date.now();
+ document.getElementById('result').innerHTML=
+ 'Demo Order ID: '+id+
+ '<br>Player ID: '+uid+
+ '<br>Diamond: '+diamond+
+ '<br>Price: ৳'+price+
+ '<br>Payment: '+payment+
+ '<br><b>Demo only — no payment or delivery is made.</b>';
+}
+</script>
+
+</body>
+</html>
